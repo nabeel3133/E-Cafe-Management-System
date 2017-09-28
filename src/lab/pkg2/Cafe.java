@@ -16,8 +16,6 @@ import java.util.GregorianCalendar;
  * @author Nabeel Hussain Syed
  */
 public class Cafe extends javax.swing.JFrame {
-public List<String> dishes;
-public List<Integer> dishes_prices;
 public int totalOrderPrice;
 public int totalTimeTaken;
 public int pickup_time;
@@ -27,8 +25,6 @@ public int actual_time;
      */
     public Cafe() {
         initComponents();
-        dishes = new ArrayList<String>();
-        dishes_prices = new ArrayList<Integer>();
         totalOrderPrice = 0;
         totalTimeTaken = 0;
         pickup_time = 0;
@@ -36,20 +32,7 @@ public int actual_time;
         pickUpPanel.setVisible(false);
         DeliveryPanel.setVisible(false);
     }
-
-    public void AddFoodItems(List<String> food_items)
-    {
-        for(int i=0; i<food_items.size(); i++)
-        {
-        dishes.add(food_items.get(i));
-        }        
-    }
-
-    public List<String> GetFoodItems(List<String> food_items)
-    {
-        return food_items;
-    }
-        
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -520,6 +503,16 @@ public int actual_time;
         totalCookingTime.setText("Total Cooking Time: "+totalTimeTaken+"minutes");     
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public int CheckOrderPrice()
+    {
+        return totalOrderPrice;
+    }
+    
+    public int CheckTotalTime()
+    {
+        return totalTimeTaken;
+    }
+    
     public void OrderNow()
     {
     Date date = new Date();
@@ -529,12 +522,14 @@ public int actual_time;
     if(actual_time>22 || actual_time < 11)
     {
         JOptionPane.showMessageDialog(null,"We are closed at the moment. Please come back in between 11 to 22hours","Error",JOptionPane.ERROR_MESSAGE);                              
+        System.exit(0);
     }
     else
     {
         if(jRadioButton2.isSelected())
         {  
         JOptionPane.showMessageDialog(null,"Total Cooking time: "+totalTimeTaken+"minutes\nOrder Price: $"+totalOrderPrice+"\nDelivery address: "+deliveryAddress.getText(),"Order Details",JOptionPane.INFORMATION_MESSAGE);                       
+        System.exit(0);        
         }
         else if(jRadioButton1.isSelected())
         {
@@ -546,6 +541,7 @@ public int actual_time;
             else
             {
             JOptionPane.showMessageDialog(null,"Total Cooking time: "+totalTimeTaken+"minutes\nOrder Price: $"+totalOrderPrice+"\nPick up time: "+jTextField1.getText(),"Order Details",JOptionPane.INFORMATION_MESSAGE);                           
+            System.exit(0);            
             }
         }
     }

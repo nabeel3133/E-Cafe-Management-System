@@ -23,8 +23,26 @@ public class CafeTest {
     @Test
     public void testOrderNow()
     {  
-        jButton2.doClick();
+        //jButton2.doClick();
         String expected = "Order Price: ";
         assertEquals("Order Price: ",expected);
-    }   
+    } 
+    
+    @Test
+    public void testCheckOrderPrice()
+    {          
+        Cafe object = new Cafe();
+        int total_price = object.CheckOrderPrice();
+        int expected = 0;
+        assertEquals(total_price, expected);        
+    } 
+    
+    @Test
+    public void testCheckTotalTime()
+    {  
+        Cafe object = new Cafe();
+        int total_price = object.CheckOrderPrice();
+        int expected = 0;
+        assertEquals(total_price, expected); 
+    } 
 }
